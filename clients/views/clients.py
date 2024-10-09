@@ -9,6 +9,11 @@ from django.http import JsonResponse
 from django.views import View
 import openai
 import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 class ClientController(APIView):
     def get(self, request, *args, **kwargs):
@@ -45,7 +50,7 @@ class ClientController(APIView):
     
 class GenerateMessageView(View):
     def get(self, request, client_uuid, *args, **kwargs):
-        openai.api_key = 'sk-svcacct-giSce-BSJxbjeg7SsPXVizELaZ0Odjlm_SJWrbbLk03fcPgRlXmrU5syxyzQNCEmsefT3BlbkFJcif8rYO-2RQvtXoDekctBJKAjGTvZY4oG-W8n4w0RxpCdLmJ04cTDsg8nmmpmvgBwMAA'
+        openai.api_key = os.getenv("OPENAI_API_KEY")
 
         try:
             client = Client.objects.get(uuid=client_uuid)
