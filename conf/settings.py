@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "srm18%c5(l$*%**$&00l^0cxc*bw^lvm@qc-))5&45kt(=x+0i"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -97,23 +97,27 @@ DATABASES = {
     )
 }
 
+#    "default": dj_database_url.config(
+#        default='postgres://localhost', conn_max_age=600, ssl_require=True
+#    )
+
+
 if DEBUG:
     DATABASES = {
-    "default": dj_database_url.config(
-        default='postgres://localhost', conn_max_age=600, ssl_require=True
-    )
-}
-else:
-    DATABASES = {
         "default": {
-            "ENGINE": os.environ.get("SQL_ENGINE"),
-            "NAME": os.environ.get("SQL_DATABASE"),
-            "USER": os.environ.get("SQL_USER"),
-            "PASSWORD": os.environ.get("SQL_PASSWORD"),
-            "HOST": os.environ.get("SQL_HOST"),
-            "PORT": os.environ.get("SQL_PORT"),
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    
+     }   
+}
 
 
 # Password validation
