@@ -235,7 +235,7 @@ LOGGING = {
     "disable_existing_loggers": True,
     "handlers": {
         "console": {
-            "class": "rich.logging.RichHandler",
+            "class": "logging.RichHandler",
             "rich_tracebacks": True,
             "show_time": True,
         },
