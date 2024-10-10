@@ -180,6 +180,7 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
 
 # CORS config
 CORS_ALLOWED_ORIGINS = [
+    "https://relif-test-5795fa68bfb5.herokuapp.com",
     "http://localhost:8000",
     "http://localhost:3000",
 ]
