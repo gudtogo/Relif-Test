@@ -92,8 +92,7 @@ WSGI_APPLICATION = "conf.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(default='postgres://localhost'),
-}
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL', 'postgres://localhost'))
 
 if DEBUG:
     DATABASES = {
