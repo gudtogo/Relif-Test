@@ -27,25 +27,9 @@ class ClientController(APIView):
         serializer = CreateClientSerializer(data=data, context={"request": request})
 
         if serializer.is_valid():
-            client = serializer.save()  # Guardar el cliente
-            
-            for message_data in data.get('messages', []):
-                message_data['client'] = client
-                message_data['role']
-                print("Message data", message_data)
-                
-                message_serializer = MessageSerializer(data=message_data)
-                if message_serializer.is_valid():
-                    message_serializer.save() 
-                else:
-                    return Response(message_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
-            for debt_data in data.get('debts', []):
-                debt_data['client'] = client
-                DeudasSerializer.create(DeudasSerializer(), validated_data=debt_data)
-
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class GenerateMessageView(View):
