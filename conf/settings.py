@@ -236,8 +236,6 @@ LOGGING = {
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
-            "rich_tracebacks": True,
-            "show_time": True,
         },
     },
     "loggers": {
